@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f5f7;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #0079bf;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.add-list-btn {
+  background-color: #61bd4f;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-list-btn:hover {
+  background-color: #5aac44;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  flex-grow: 1;
+}
+
+.list {
+  background-color: #34495e;
+  border-radius: 6px;
+  width: 300px;
+  padding: 10px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-header h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-container {
+  min-height: 20px;
+}
+
+.card {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.add-card-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
