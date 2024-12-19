@@ -22,13 +22,11 @@ const App = () => {
     },
   ]);
 
-  // Drag-and-Drop Handler
   const onDragEnd = (result) => {
     const { source, destination } = result;
 
     if (!destination) return;
 
-    // Moving within the same list
     if (source.droppableId === destination.droppableId) {
       const listIndex = lists.findIndex((list) => list.id === source.droppableId);
       const updatedCards = Array.from(lists[listIndex].cards);
@@ -39,7 +37,6 @@ const App = () => {
       updatedLists[listIndex].cards = updatedCards;
       setLists(updatedLists);
     } else {
-      // Moving between lists
       const sourceListIndex = lists.findIndex((list) => list.id === source.droppableId);
       const destinationListIndex = lists.findIndex(
         (list) => list.id === destination.droppableId
@@ -58,7 +55,6 @@ const App = () => {
     }
   };
 
-  // Add a new card to a list
   const addCard = (listId) => {
     const newCard = { id: `card-${Date.now()}`, content: "New Card" };
     const updatedLists = lists.map((list) => {
@@ -70,7 +66,6 @@ const App = () => {
     setLists(updatedLists);
   };
 
-  // Add a new list
   const addList = () => {
     const newList = {
       id: `list-${Date.now()}`,
@@ -78,6 +73,32 @@ const App = () => {
       cards: [],
     };
     setLists([...lists, newList]);
+  };
+
+  const editListTitle = (listId, newTitle) => {
+    const updatedLists = lists.map((list) => {
+      if (list.id === listId) {
+        return { ...list, title: newTitle };
+      }
+      return list;
+    });
+    setLists(updatedLists);
+  };
+
+  const editCardContent = (listId, cardId, newContent) => {
+    const updatedLists = lists.map((list) => {
+      if (list.id === listId) {
+        const updatedCards = list.cards.map((card) => {
+          if (card.id === cardId) {
+            return { ...card, content: newContent };
+          }
+          return card;
+        });
+        return { ...list, cards: updatedCards };
+      }
+      return list;
+    });
+    setLists(updatedLists);
   };
 
   return (
@@ -99,7 +120,11 @@ const App = () => {
                   {...provided.droppableProps}
                 >
                   <div className="list-header">
-                    <h3>{list.title}</h3>
+                    <input
+                      className="list-title"
+                      value={list.title}
+                      onChange={(e) => editListTitle(list.id, e.target.value)}
+                    />
                   </div>
                   <div className="card-container">
                     {list.cards.map((card, index) => (
@@ -115,7 +140,13 @@ const App = () => {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            {card.content}
+                            <input
+                              className="card-content"
+                              value={card.content}
+                              onChange={(e) =>
+                                editCardContent(list.id, card.id, e.target.value)
+                              }
+                            />
                           </div>
                         )}
                       </Draggable>

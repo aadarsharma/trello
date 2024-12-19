@@ -55,9 +55,25 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list-header h3 {
+.list-header {
+  margin-bottom: 10px;
+}
+
+.list-title {
   font-size: 16px;
   font-weight: bold;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background: none;
+  color: white;
+}
+
+.list-title:focus {
+  outline: 2px solid #61bd4f;
+  background: white;
+  color: black;
+  border-radius: 4px;
 }
 
 .card-container {
@@ -75,8 +91,18 @@ body {
   cursor: grab;
 }
 
-.card:active {
-  cursor: grabbing;
+.card-content {
+  width: 100%;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.card-content:focus {
+  outline: 2px solid #0079bf;
+  background: #f0f4f7;
+  border-radius: 4px;
 }
 
 .add-card-btn {
